@@ -1,0 +1,100 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "Test API"
+  },
+  "host": "localhost:8088",
+  "basePath": "/camel",
+  "tags": [
+    {
+      "name": "students/",
+      "description": "Students Service"
+    }
+  ],
+  "schemes": [
+      "http"
+  ],
+  "paths": {
+    "/students/list": {
+      "post": {
+        "tags": [
+            "students/"
+        ],
+        "operationId": "api-route",
+        "consumes": [
+            "application/json"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StudentListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Output type",
+            "schema": {
+              "$ref": "#/definitions/StudentAllocation"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "StudentListRequest": {
+      "type": "object",
+      "properties": {
+        "students": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Student"
+          }
+        }
+      }
+    },
+    "Student": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "StudentAllocation": {
+      "type": "object",
+      "properties": {
+        "nursery": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "reception": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "others": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}
